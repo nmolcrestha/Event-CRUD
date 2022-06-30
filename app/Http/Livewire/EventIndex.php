@@ -15,6 +15,7 @@ class EventIndex extends Component
     public $sortDirection = 'asc';
 
     public $showEditModal = false;
+    public $showDeleteModal = false;
 
     public Events $editing;
 
@@ -50,6 +51,11 @@ class EventIndex extends Component
         $this->showEditModal = true;
     }
 
+    public function eventDelete(Events $event){
+        $this->editing = $event;
+        $this->showDeleteModal = true;
+    }
+
     public function sortBy($field){
         if($this->sortField == $field){
             $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
@@ -65,6 +71,21 @@ class EventIndex extends Component
         $this->editing->save();
 
         $this->showEditModal = false;
+
+        $this->dispatchBrowserEvent('notify', 'Event Saved!');
+        // if(isset($this->editing->id)){
+        //     dd('EDIT');
+        // }else{
+        //     dd('Create');
+        // }
+    }
+
+    public function delete(){
+        $this->editing->delete();
+
+        $this->showDeleteModal = false;
+
+        $this->dispatchBrowserEvent('notify', 'Event Deleted!');
     }
 
     public function render()

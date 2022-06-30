@@ -1,4 +1,5 @@
 <div class="py-4 space-y-4">
+    <x-notification/>
     <div class="flex justify-between">
         <div class=" w-1/4">
             <x-input.text class="sm:rounded-lg p-2" wire:model="search" placeholder="Search"/>
@@ -43,7 +44,7 @@
                         </x-table.cell>
                         <x-table.cell class="text-center">
                             <x-button.link wire:click="edit({{ $e->id }})" class="text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-700 border-indigo-600 p-1 rounded text-center mb-1">Edit</x-button.link>
-                            <x-button.link class="text-white bg-red-600 hover:bg-red-500 active:bg-red-700 border-indigo-600 p-1 rounded text-center">Delete</x-button.link>
+                            <x-button.link wire:click="eventDelete({{ $e->id }})" class="text-white bg-red-600 hover:bg-red-500 active:bg-red-700 border-indigo-600 p-1 rounded text-center">Delete</x-button.link>
                         </x-table.cell>
                     </x-table.row>   
                 @empty
@@ -64,4 +65,5 @@
     </div>
     {{-- Form     --}}
     @include('includes.form')
+    @include('includes.delete')
 </div>
