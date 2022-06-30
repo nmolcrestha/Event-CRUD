@@ -4,19 +4,19 @@
 
         <x-slot name="content">
             <x-input.group for="title" label="Title" :error="$errors->first('editing.title')">
-                <x-input.text wire:model="editing.title" id="title" placeholder="Title" />
+                <x-input.text wire:model.lazy="editing.title" id="title" placeholder="Title" />
             </x-input.group>
 
             <x-input.group for="description" label="Description" :error="$errors->first('editing.description')">
-                <x-input.textarea wire:model="editing.description" id="description" placeholder="Description" />
+                <x-input.textarea wire:model.lazy="editing.description" id="description" placeholder="Description" />
             </x-input.group>
 
             <x-input.group for="start_date" label="Start Date" :error="$errors->first('editing.start_date_edit')">
-                <x-input.date wire:model="editing.start_date_edit" id="start_date" placeholder="Starting Date" />
+                <x-input.date wire:model.lazy="editing.start_date_edit" id="start_date" placeholder="Starting Date" />
             </x-input.group>
 
             <x-input.group for="end_date" label="End Date" :error="$errors->first('editing.end_date_edit')">
-                <x-input.date wire:model="editing.end_date_edit" id="end_date" placeholder="Ending Date" />
+                <x-input.date wire:model.lazy="editing.end_date_edit" id="end_date" placeholder="Ending Date" />
             </x-input.group>
         </x-slot>
 

@@ -36,8 +36,8 @@ class EventIndex extends Component
         return [
             'editing.title' => 'required',
             'editing.description' => 'required',
-            'editing.start_date_edit' => 'required',
-            'editing.end_date_edit' => 'required',
+            'editing.start_date_edit' => 'required|date',
+            'editing.end_date_edit' => 'required|date|after_or_equal:start_date',
         ];
     }
     
@@ -110,9 +110,9 @@ class EventIndex extends Component
                                 ->whereDate('end_date', '>=' ,date('Y-m-d'));
                         })
                         ->when($this->filters['status']=='upcoming', function ($query){
+
                             $query->whereDate('start_date', '>' ,date('Y-m-d'))
-                                ->whereDate('end_date', '>' ,date('Y-m-d'))
-                                ->when();
+                                ->whereDate('end_date', '>' ,date('Y-m-d'));
                         })
                         ->when($this->filters['status']=='ended', function ($query){
                             $query->whereDate('start_date', '<' ,date('Y-m-d'))
@@ -138,7 +138,7 @@ class EventIndex extends Component
                         })
                         ->search('title', $this->search)
                         ->orderBy($this->sortField, $this->sortDirection)
-                        ->paginate(5)
+                        ->paginate(10)
                         
         ]);
     }
