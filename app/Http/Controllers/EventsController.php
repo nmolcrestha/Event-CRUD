@@ -14,8 +14,6 @@ class EventsController extends Controller
     }
     
     public function index(){
-        // $events = $this->events->all()->where('status', 'running')->all();
-        //dd($events);
         return view('welcome');
     }
 }

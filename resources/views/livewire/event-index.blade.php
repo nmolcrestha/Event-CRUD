@@ -1,13 +1,20 @@
 <div class="py-4 space-y-4">
     <x-notification/>
     <div class="flex justify-between">
-        <div class=" w-1/4">
-            <x-input.text class="sm:rounded-lg p-2" wire:model="search" placeholder="Search"/>
+        <div class=" w-1/4 flex space-x-4">
+            <x-input.text class="sm:rounded-lg p-2" wire:model="search" placeholder="Search with Title"/>
+
+            <x-button.link wire:click="$toggle('showFilters')">@if($showFilters)Hide @endif Filter</x-button.link>
         </div>
         <div>
             <x-button.primary wire:click="create">+ Create</x-button.primary>
         </div>
 
+    </div>
+    <div>
+        @if($showFilters)
+            @include('includes.filter')
+        @endif
     </div>
     <div class="flex-col space-y-4">
         <x-table>
@@ -60,7 +67,9 @@
         
         </x-table>
         <div>
+            @if ($events instanceof \Illuminate\Pagination\LengthAwarePaginator)
             {{ $events->links() }}
+            @endif
         </div>
     </div>
     {{-- Form     --}}

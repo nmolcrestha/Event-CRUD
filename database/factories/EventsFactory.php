@@ -12,12 +12,17 @@ class EventsFactory extends Factory
     
     public function definition()
     {
-        
+        $day = rand(1, 7);
+        if($day>2){
+            $date = Carbon::now()->subDay(rand(1, 10));
+        }else{
+            $date = Carbon::now()->addDay(rand(1, 10));
+        }
         return [
             'title' => $this->faker->name(),
             'description' => $this->faker->text,
-            'start_date' => Carbon::now()->subDays(rand(1, 365))->startOfDay(),
-            'end_date' => Carbon::now()->subDays(rand(1, 365))->startOfDay(), // password
+            'start_date' => $date,
+            'end_date' =>  date('Y-m-d', strtotime($date. ' + '.$day.' days')), // password
         ];
     }
 }

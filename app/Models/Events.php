@@ -22,9 +22,9 @@ class Events extends Model
     protected $appends = ['status', 'end_date_edit', 'start_date_edit'];
 
     public function getStatusAttribute(){
-        if($this->start_date > date('Y-m-d') and $this->end_date > date('Y-m-d')){
+        if($this->start_date->format('Y-m-d') > date('Y-m-d') and $this->end_date->format('Y-m-d') > date('Y-m-d')){
             return 'upcoming';
-        }elseif($this->start_date <= date('Y-m-d') and $this->end_date >= date('Y-m-d')){
+        }elseif($this->start_date->format('Y-m-d') <= date('Y-m-d') and $this->end_date->format('Y-m-d') >= date('Y-m-d')){
             return 'running';
         }else{
             return 'ended';

@@ -7,3 +7,10 @@
 4. php artisan migrate:fresh --seed.
 5. php artisan serve
 6. Happy Coding. 
+
+
+In the project you can search by title. The table is sorted by on click. The filter function consists of filter by status, filter by upcoming and finished events in a week. More more you can filter event my adding in the input field.
+It is a single page application.
+
+Tools Used:
+Laravel, Livewire, Alpine JS, Pikaday DatePiker, TailWind, MySql.
